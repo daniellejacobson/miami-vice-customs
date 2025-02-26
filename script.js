@@ -23,31 +23,25 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("contactForm").style.display = "none";
     });
 
-    // 5️⃣ Form Submission Handling
-    document.getElementById("submitContact").addEventListener("click", function () {
-        let name = document.querySelector("#contactForm input[type='text']").value;
-        let email = document.querySelector("#contactForm input[type='email']").value;
-        let message = document.querySelector("#contactForm textarea").value;
+    // 5️⃣ Form Submission Handling via Formspree
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+        e.preventDefault(); // Prevent default form submission
         
-        if (name && email && message) {
-            alert("Thanks, " + name + "! Your message has been sent. We'll get back to you soon.");
-            document.getElementById("contactForm").style.display = "none";
-        } else {
-            alert("Please fill out all fields before submitting.");
-        }
-    });
-
-    // 6️⃣ Animated Scroll Effects (Optional Enhancement)
-    const sections = document.querySelectorAll("section");
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
+        let formData = new FormData(this);
+        fetch("https://formspree.io/f/xkgolekw", {
+            method: "POST",
+            body: formData,
+            headers: { "Accept": "application/json" }
+        }).then(response => {
+            if (response.ok) {
+                alert("Thanks! Your message has been sent.");
+                document.getElementById("contactForm").reset();
+                document.getElementById("contactForm").style.display = "none";
+            } else {
+                alert("Oops! Something went wrong. Please try again.");
             }
+        }).catch(error => {
+            alert("Error: " + error.message);
         });
-    }, { threshold: 0.2 });
-    
-    sections.forEach(section => {
-        observer.observe(section);
     });
 });
