@@ -1,6 +1,5 @@
-// Ensure the script runs after the site loads
 document.addEventListener("DOMContentLoaded", function () {
-
+    
     // 1️⃣ Auto-update footer year
     document.getElementById("footerYear").textContent = new Date().getFullYear();
 
