@@ -1,9 +1,11 @@
 /* General Styles */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #111;
+    background-color: #0a0a0a;
     color: white;
     text-align: center;
 }
@@ -13,8 +15,14 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    background-color: black;
+    padding: 20px 50px;
+    background: linear-gradient(90deg, #ff0077, #7700ff);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 nav ul {
@@ -24,7 +32,7 @@ nav ul {
 }
 
 nav ul li {
-    margin: 0 15px;
+    margin: 0 20px;
 }
 
 nav ul li a {
@@ -32,67 +40,112 @@ nav ul li a {
     text-decoration: none;
     font-size: 18px;
     transition: 0.3s;
+    font-weight: 600;
 }
 
 nav ul li a:hover {
-    color: hotpink;
+    color: #ffff99;
 }
 
 /* Hero Section */
 header {
-    padding: 100px 20px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     background: url('images/hero.jpg') center/cover no-repeat;
     text-align: center;
+    position: relative;
+}
+
+header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
+
+header h2, header p, header button {
+    position: relative;
+    z-index: 2;
 }
 
 header h2 {
-    font-size: 48px;
+    font-size: 56px;
     margin-bottom: 10px;
-    color: hotpink;
+    color: #ff0077;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+header p {
+    font-size: 22px;
+    max-width: 600px;
 }
 
 button {
     padding: 15px 30px;
     border: none;
-    background-color: hotpink;
+    background: linear-gradient(90deg, #ff0077, #7700ff);
     color: white;
     font-size: 20px;
     cursor: pointer;
     border-radius: 5px;
     transition: 0.3s;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0px 4px 10px rgba(255, 0, 119, 0.5);
 }
 
 button:hover {
-    background-color: #ff3399;
+    background: linear-gradient(90deg, #7700ff, #ff0077);
+    transform: scale(1.05);
 }
 
 /* Services Section */
 #services {
-    padding: 50px 20px;
+    padding: 100px 20px;
+    background: #111;
 }
 
 .service {
     margin: 20px auto;
-    max-width: 400px;
+    max-width: 500px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    transition: 0.3s;
+    box-shadow: 0px 5px 15px rgba(255, 0, 119, 0.2);
+}
+
+.service:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 20px rgba(255, 0, 119, 0.4);
 }
 
 .service img {
     width: 100%;
-    max-width: 400px;
+    max-width: 450px;
     border-radius: 10px;
 }
 
 /* Contact Form */
 #contactForm {
     display: none;
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 30px;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 10px;
-    width: 300px;
+    width: 350px;
+    box-shadow: 0px 10px 20px rgba(255, 0, 119, 0.5);
 }
 
 .hidden {
