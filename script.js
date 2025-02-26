@@ -12,12 +12,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // 3️⃣ Open Contact Form on CTA button click
-    document.getElementById("getQuote").addEventListener("click", function () {
-        document.getElementById("contactForm").style.display = "block";
-    });
-
-    document.getElementById("contactButton").addEventListener("click", function () {
-        document.getElementById("contactForm").style.display = "block";
+    document.querySelectorAll("#getQuote, #contactButton").forEach(button => {
+        button.addEventListener("click", function () {
+            document.getElementById("contactForm").style.display = "flex";
+        });
     });
 
     // 4️⃣ Close Contact Form
@@ -25,10 +23,31 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("contactForm").style.display = "none";
     });
 
-    // 5️⃣ Simulate Form Submission (Replace with real backend later)
+    // 5️⃣ Form Submission Handling
     document.getElementById("submitContact").addEventListener("click", function () {
-        alert("Your message has been sent! We'll get back to you soon.");
-        document.getElementById("contactForm").style.display = "none";
+        let name = document.querySelector("#contactForm input[type='text']").value;
+        let email = document.querySelector("#contactForm input[type='email']").value;
+        let message = document.querySelector("#contactForm textarea").value;
+        
+        if (name && email && message) {
+            alert("Thanks, " + name + "! Your message has been sent. We'll get back to you soon.");
+            document.getElementById("contactForm").style.display = "none";
+        } else {
+            alert("Please fill out all fields before submitting.");
+        }
     });
 
+    // 6️⃣ Animated Scroll Effects (Optional Enhancement)
+    const sections = document.querySelectorAll("section");
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            }
+        });
+    }, { threshold: 0.2 });
+    
+    sections.forEach(section => {
+        observer.observe(section);
+    });
 });
